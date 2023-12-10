@@ -34,8 +34,8 @@ def main(unsigned_genesis_block_path: dict, output_path: str, sk: str):
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('-sk', type=str, required=True)
-    parser.add_argument('-g', '-unsigned_genesis_block_path', type=str, required=True)
-    parser.add_argument('-o', '-output_path', type=str, required=True)
+    parser.add_argument('-g', type=str, required=True)
+    parser.add_argument('-o', type=str, required=True)
     args = parser.parse_args()
 
-    main(unsigned_genesis_block_path=args.unsigned_genesis_block_path, output_path=args.output_path, sk=args.sk)
+    main(unsigned_genesis_block_path=args.g, output_path=args.o, sk=args.sk)
