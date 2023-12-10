@@ -1,16 +1,17 @@
 import os
 from argparse import ArgumentParser
 import json
+from pathlib import Path
 from lamden.crypto.block_validator import GENESIS_BLOCK_NUMBER, GENESIS_HLC_TIMESTAMP, GENESIS_PREVIOUS_HASH
 from lamden.crypto.canonical import block_hash_from_block, hash_genesis_block_state_changes
 from lamden.crypto.wallet import Wallet
 from contracting.db.encoder import encode, decode
 
 
-def main(source_genesis_path: dict, output_path: str, sk: str):
+def main(anything: dict, output_path: str, sk: str):
     # cwd = os.getcwd()
     # source_genesis_path = os.path.join(cwd, source_genesis_path)
-
+    source_genesis_path = Path.home().joinpath('formatted_genesis_modified.json')
     with open(source_genesis_path) as f:
         unsigned_genesis_block = json.load(f)
 
@@ -41,4 +42,4 @@ if __name__ == '__main__':
     parser.add_argument('-o', type=str, required=True)
     args = parser.parse_args()
 
-    main(source_genesis_path=args.g, output_path=args.o, sk=args.sk)
+    main(anything=args.g, output_path=args.o, sk=args.sk)
