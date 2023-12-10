@@ -8,10 +8,10 @@ from lamden.crypto.wallet import Wallet
 from contracting.db.encoder import encode, decode
 
 
-def main(anything: dict, output_path: str, sk: str):
+def main(source_genesis_path: dict, output_path: str, sk: str):
     # cwd = os.getcwd()
     # source_genesis_path = os.path.join(cwd, source_genesis_path)
-    source_genesis_path = Path.home().joinpath('formatted_genesis_modified.json')
+    # source_genesis_path = Path.home().joinpath('formatted_genesis_modified.json')
     with open(source_genesis_path) as f:
         unsigned_genesis_block = json.load(f)
 
@@ -42,4 +42,4 @@ if __name__ == '__main__':
     parser.add_argument('-o', type=str, required=True)
     args = parser.parse_args()
 
-    main(anything=args.g, output_path=args.o, sk=args.sk)
+    main(source_genesis_path=args.g, output_path=args.o, sk=args.sk)
